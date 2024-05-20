@@ -4,19 +4,24 @@ const { User } = require("./UserModel");
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-    sender: {
+    senderId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
-    recipient: {
+    receiverId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     productPost: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ProductPost'
     },
-    text: String,
+    message: {
+        type: String,
+        required: true,
+    },
     file: String,
 }, {timestamps:true});
 
