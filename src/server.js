@@ -1,5 +1,6 @@
 const express = require('express');
 const ws = require("ws");
+// const cookieParser = require('cookie-parser')
 
 // make a server instance 
 const app = express();
@@ -20,6 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
+// app.use(cookieParser());
 
 app.get("/", (request, response) => {
     response.json({
@@ -51,10 +53,10 @@ wss.on('connection', (connection, request) => {
 });
 
 // Routes
-// app.use("/users", require("./controllers/UserController"));
+app.use("/users", require("./controllers/UserController"));
 
-// const UserRouter = require('./controllers/UserController');
-// app.use('/users', UserRouter);
+const messageRouter = require('./controllers/MessageController');
+app.use('/messages', messageRouter);
 
 // app.use("/productpost", require("./controllers/ProductPostController"));
 
